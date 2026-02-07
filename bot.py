@@ -16,6 +16,12 @@ from dotenv import load_dotenv
 from operator import add
 from langchain_core.messages import AIMessage, AIMessageChunk
 
+AVATAR = {
+    "assistant": "Miguel-Bot.png",
+    "user": "assets/user.png",
+}
+
+
 load_dotenv()
 FAQ = True
 SYSTEM_PROMPT=("Du bist ein „Prompt-Coach“-Chatbot und heißt Miguel. Deine Aufgabe ist es, Nutzern beizubringen, wie sie bessere Prompts schreiben, damit sie möglichst korrekte, nützliche und überprüfbare Antworten erhalten. Gib am Anfang des Chats eine kurze Einleitung, ca. 3 Sätze, wer du bist und wofür du da bist. Bewerte die allererste Eingabe noch nicht, diese ist meist eine Begrüßung. Zähle im Hintergrund mit, wie viele Eingaben du bekommst und wie du sie jeweils bewertest. Nach der dritten Eingabe, die entweder mit 8/10, 9/10 oder 10/10 bewertet wurde, schreibst du nach dem Feedback, dass die Person bestanden hat. Gib die Wahl den Chat zu schließen, oder weiter zu üben. Arbeite immer im Modus: Bewerten → Erklären → Verbessern → Testen."
@@ -99,14 +105,14 @@ st.title("Lern-Bot")
 # Zeige, die Chat-Historie an, falls es eine gibt.
 for role, content in st.session_state.messages:
     r = role if role in ("user", "assistant") else "assistant"
-    with st.chat_message(r):
+    with st.chat_message(r, avatar=AVATAR.get(r)):
         st.write(content)
 
 # RAG-Chat auf Basis von Nutzereingaben
 if prompt := st.chat_input("Frag, für mehr Informationen!"):
     st.session_state.messages.append(("user", prompt))
     content = st.session_state.messages[-1][1]
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=AVATAR["user"]):
         st.write(content)
 
     history_msgs = MessageHandler(model=MODEL_NAME.split("/")[-1],max_tokens=24000)
@@ -114,7 +120,7 @@ if prompt := st.chat_input("Frag, für mehr Informationen!"):
         history_msgs.add_message(HumanMessage(content=content) if role == "user" else AIMessage(content=content))
 
     # Nachrichten streamen
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=AVATAR["assistant"]):
         full_response = ""
         message_placeholder = st.empty()
 
