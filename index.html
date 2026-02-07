@@ -47,6 +47,20 @@
     .course-nav .pagination { margin-bottom: 0; }
     #content { padding-bottom: 1.25rem; }
 
+
+    /* Größere Buttons für die Lerneinheiten (unten) */
+    .course-nav #pagination .btn {
+      padding: .55rem .95rem;
+      font-size: 1rem;
+      border-radius: .6rem;
+    }
+    @media (max-width: 576px) {
+      .course-nav #pagination .btn {
+        padding: .5rem .8rem;
+        font-size: .95rem;
+      }
+    }
+
     
     .chatbot-launcher {
       display: none;
@@ -96,6 +110,10 @@
                 data-bs-toggle="modal" data-bs-target="#chatbotModal">
           Chatbot
         </button>
+        <button type="button" class="btn btn-outline-info btn-sm"
+                data-bs-toggle="modal" data-bs-target="#helpModal">
+          Hilfe
+        </button>
         <button type="button" class="btn btn-outline-secondary btn-sm"
                 data-bs-toggle="modal" data-bs-target="#evaluationModal">
           Evaluation
@@ -105,27 +123,78 @@
   </nav>
 
   <main class="container">
-    <section id="homeScreen" class="px-4 py-5 my-5 text-center">
-      <h1 class="display-5 fw-bold text-body-emphasis">
-        <a href="#" id="homeTitle" class="text-decoration-none text-body-emphasis">Verständnis von Large Language Models</a>
-      </h1>
-      <div class="col-lg-8 mx-auto">
-        <p class="lead mb-4">
-          Willkommen! Starte den Kurs, öffne die Evaluation oder teste deine eigenen Prompts im Chatbot (oben rechts).
-        </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-primary btn-lg px-4" id="btnStart">
-            Kurs starten
-          </button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4"
-                  data-bs-toggle="modal" data-bs-target="#evaluationModal">
-            Evaluation
-          </button>
+    <section id="homeScreen" class="px-4 py-5 my-5">
+  <div class="text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">
+      <a href="#" id="homeTitle" class="text-decoration-none text-body-emphasis">Verständnis von Large Language Models</a>
+    </h1>
+    <div class="col-lg-9 mx-auto">
+      <p class="lead mb-3">
+        In diesem kurzen E‑Learning lernst du, was <strong>Large Language Models (LLMs)</strong> sind, wie sie funktionieren
+        und wie du sie sinnvoll und verantwortungsvoll nutzen kannst.
+      </p>
+      <p class="text-body-secondary mb-0">
+        Die Inhalte sind in <strong>4 Lerneinheiten</strong> aufgebaut. Nutze den Chatbot zum Ausprobieren eigener Prompts –
+        und wenn du dich erst orientieren willst, öffne die <strong>Hilfe / Navigation</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="row g-3 mt-4 text-start justify-content-center">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="h6 fw-semibold">Worum geht’s?</h2>
+          <p class="mb-0 text-body-secondary">
+            Grundlagen zu LLMs: Trainingsidee, Stärken &amp; Grenzen, typische Einsatzfelder und worauf man bei Antworten achten sollte.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="courseScreen">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="h6 fw-semibold">So arbeitest du dich durch</h2>
+          <p class="mb-0 text-body-secondary">
+            Starte den Kurs, bearbeite unten <em>LE&nbsp;1–LE&nbsp;4</em> und springe jederzeit direkt zu einer Einheit.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="h6 fw-semibold">Feedback</h2>
+          <p class="mb-0 text-body-secondary">
+            Die <strong>Evaluation ist freiwillig</strong> – wir würden uns aber sehr über dein Feedback freuen, damit wir das E‑Learning verbessern können.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+    <button type="button" class="btn btn-primary btn-lg px-4" id="btnStart">
+      Kurs starten
+    </button>
+    <button type="button" class="btn btn-outline-info btn-lg px-4"
+            data-bs-toggle="modal" data-bs-target="#helpModal">
+      Hilfe / Navigation
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-lg px-4"
+            data-bs-toggle="modal" data-bs-target="#evaluationModal">
+      Evaluation
+    </button>
+  </div>
+
+  <p class="text-center text-muted small mt-3 mb-0">
+    Tipp: Zur Startseite kommst du jederzeit über den Titel oben links zurück.
+  </p>
+</section>
+
+<section id="courseScreen">
 
     
     <div class="progress my-3" role="progressbar" aria-label="Kursfortschritt">
@@ -176,7 +245,7 @@
 
         <div class="ratio ratio-16x9">
           <iframe
-            src="https://app.lumi.education/api/v1/run/ROW2_K/embed"
+            src="https://app.lumi.education/api/v1/run/Onl0lf/embed"
             title="Lerneinheit 3 (Lumi)"
             frameborder="0"
             allowfullscreen="allowfullscreen"
@@ -185,6 +254,7 @@
           ></iframe>
         </div>
       </section>
+
       
       <section class="lesson" data-page="4">
         <h2 class="h4 mb-3">Lerneinheit 4</h2>
@@ -232,7 +302,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
         </div>
         <div class="modal-body p-0">
-          <iframe
+  <div class="p-3 pb-2 border-bottom bg-body">
+    <div class="small text-body-secondary">
+      Hinweis: Die Evaluation ist <strong>freiwillig</strong> – wir würden uns aber sehr über dein Feedback freuen.
+    </div>
+  </div>
+  <iframe
             class="modal-iframe"
             src="https://docs.google.com/forms/d/e/1FAIpQLSd5ZBKyvcOtjkNZrOY2oHVzf747qe0K5u_RFLwYkCkD6oOX_w/viewform?embedded=true"
             title="Evaluation (Google Forms)"
@@ -244,6 +319,53 @@
       </div>
     </div>
   </div>
+  <!-- Hilfe / Navigation -->
+  <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="helpModalLabel">Hilfe &amp; Navigation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+
+        <div class="modal-body">
+          <p class="text-body-secondary mb-3">
+            Diese Seite ist bewusst einfach gehalten – trotzdem hilft die Übersicht, um sich schnell zurechtzufinden.
+          </p>
+
+          <div class="mb-4">
+            <h6 class="fw-semibold mb-2">Aufbau der Website</h6>
+            <ul class="mb-0 ps-3">
+              <li><strong>Startseite</strong>: Kurze Beschreibung + Button <em>Kurs starten</em>.</li>
+              <li><strong>Kursbereich</strong>: Oben siehst du den <em>Kursfortschritt</em>, darunter die jeweilige Lerneinheit.</li>
+              <li><strong>Navigation unten</strong>: Mit den Buttons <em>LE 1–LE 4</em> springst du direkt zwischen den Lerneinheiten.</li>
+              <li><strong>Chatbot</strong>: Über den Button oben rechts (oder den runden Button unten rechts im Kurs) kannst du eigene Prompts testen.</li>
+              <li><strong>Evaluation</strong>: Über den Button oben rechts gelangst du zum Feedback-Formular.</li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <h6 class="fw-semibold mb-2">Schnellstart</h6>
+            <ol class="mb-0 ps-3">
+              <li><strong>Kurs starten</strong> klicken.</li>
+              <li>Unten mit <strong>LE 1</strong> beginnen und dich bis <strong>LE 4</strong> durcharbeiten.</li>
+              <li>Wenn du Hilfe beim Formulieren brauchst: <strong>Chatbot</strong> öffnen und deinen Prompt optimieren.</li>
+              <li>Am Ende: <strong>Evaluation</strong> ausfüllen.</li>
+            </ol>
+          </div>
+
+          <div class="alert alert-light border small mb-0" role="note">
+            <div class="fw-semibold mb-1">Tipp</div>
+            <div>
+              Du kommst jederzeit zurück zur Startseite über den Titel oben links (<em>„Verständnis von Large Language Models“</em>).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   
   <div class="modal fade" id="chatbotModal" tabindex="-1" aria-labelledby="chatbotModalLabel" aria-hidden="true">
