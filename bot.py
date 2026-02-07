@@ -18,7 +18,7 @@ from langchain_core.messages import AIMessage, AIMessageChunk
 
 AVATAR = {
     "assistant": "Miguel-Bot.png",
-   # "user": "assets/user.png",
+    "user": "assets/User.png",
 }
 
 
@@ -112,7 +112,7 @@ for role, content in st.session_state.messages:
 if prompt := st.chat_input("Frag, für mehr Informationen!"):
     st.session_state.messages.append(("user", prompt))
     content = st.session_state.messages[-1][1]
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=AVATAR["user"]):
         st.write(content)
 
     history_msgs = MessageHandler(model=MODEL_NAME.split("/")[-1],max_tokens=24000)
