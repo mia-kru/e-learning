@@ -18,7 +18,7 @@ from langchain_core.messages import AIMessage, AIMessageChunk
 
 AVATAR = {
     "assistant": "Miguel-Bot.png",
-    "user": "assets/User.png",
+    "user": "User.png",
 }
 
 
